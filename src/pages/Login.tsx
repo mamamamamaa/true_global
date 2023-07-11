@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 const Login: FC = () => {
-  return <>LoginPage</>;
+  return <>Login page</>;
 };
-
 export default Login;

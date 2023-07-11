@@ -1,0 +1,15 @@
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+body::-webkit-scrollbar{
+    background-color: transparent;
+    width: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #3b45f3;
+    border-radius: 10px;
+}

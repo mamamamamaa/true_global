@@ -5,3 +5,16 @@ export interface AuthInitialState {
   email: string | null;
   accessToken: string | null;
 }
+
+export interface SignInResponse {
+  email: string;
+  accessToken: string;
+}
+
+export interface SignIn {
+  email: string;
+  password: string;
+}
+
+export interface SignUp extends SignIn {}
+export interface SignUpResponse extends SignInResponse {}

@@ -1,6 +1,6 @@
 export interface CategoryState {
-  error: null;
-  isLoading: false;
+  error: string | null | undefined;
+  isLoading: boolean;
   categories: Category[];
 }
 

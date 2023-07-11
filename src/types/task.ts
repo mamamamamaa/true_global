@@ -1,6 +1,6 @@
 export interface TaskState {
-  error: null;
-  isLoading: false;
+  error: string | null | undefined;
+  isLoading: boolean;
   tasks: Task[];
 }
 

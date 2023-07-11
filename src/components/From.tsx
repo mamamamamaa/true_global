@@ -1,27 +1,15 @@
 import { FC } from "react";
-import * as Yup from "yup";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { FormValues } from "../types/common.ts";
 
-export const From: FC = () => {
-  const initialValues = {
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string()
-      .required("Password is required")
-      .min(8, "Password must be at least 8 characters"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match")
-      .required("Confirm Password is required"),
-  });
-
+export const From: FC<FormValues> = ({
+  initialValues,
+  validationSchema,
+  inputs,
+  submitButtonText,
+  formLabel,
+}) => {
   const handleSubmit = (values) => {
     console.log(values);
   };
@@ -30,7 +18,7 @@ export const From: FC = () => {
     <Box display="flex" justifyContent="center" alignItems="center">
       <Box p={5} border="2px solid #f5f5f5" width="50%" borderRadius="10px">
         <Typography variant="h6" gutterBottom>
-          Registration Form
+          {formLabel}
         </Typography>
         <Formik
           initialValues={initialValues}
@@ -38,41 +26,22 @@ export const From: FC = () => {
           onSubmit={handleSubmit}
         >
           <Form>
-            <Box mb={2}>
-              <Field
-                as={TextField}
-                label="Email"
-                name="email"
-                variant="outlined"
-                fullWidth
-              />
-              <ErrorMessage name="email" component="div" />
-            </Box>
-            <Box mb={2}>
-              <Field
-                as={TextField}
-                label="Password"
-                name="password"
-                type="password"
-                variant="outlined"
-                fullWidth
-              />
-              <ErrorMessage name="password" component="div" />
-            </Box>
-            <Box mb={2}>
-              <Field
-                as={TextField}
-                label="Confirm Password"
-                name="confirmPassword"
-                type="password"
-                variant="outlined"
-                fullWidth
-              />
-              n
-              <ErrorMessage name="confirmPassword" component="div" />
-            </Box>
+            {inputs.map(({ label, type, name }, idx) => (
+              <Box key={idx} mb={2}>
+                <Field
+                  as={TextField}
+                  label={label}
+                  name={name}
+                  type={type}
+                  variant="outlined"
+                  fullWidth
+                />
+                <ErrorMessage name={name} component="div" />
+              </Box>
+            ))}
+
             <Button type="submit" variant="contained" color="primary">
-              Register
+              {submitButtonText}
             </Button>
           </Form>
         </Formik>

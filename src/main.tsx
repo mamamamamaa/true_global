@@ -7,12 +7,18 @@ import { persistor, store } from "./redux/store.ts";
 import { PersistGate } from "redux-persist/integration/react";
 
 import "./index.css";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+
+const defaultTheme = createTheme();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <ThemeProvider theme={defaultTheme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   </BrowserRouter>

@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout.tsx";
 import { lazy } from "react";
+import { PrivateRoute } from "./utils/PrivateRoute.tsx";
+import { RestrictedRoute } from "./utils/ProtectedRoute.tsx";
 
 const HomePage = lazy(() => import("./pages/Home.tsx"));
 const CategoryPage = lazy(() => import("./pages/Category.tsx"));
@@ -13,11 +15,34 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/category" element={<CategoryPage />}>
-          <Route path=":categoryId" element={<TaskPage />} />
+        <Route
+          path="/category"
+          element={
+            <PrivateRoute component={<CategoryPage />} redirectTo="/login" />
+          }
+        >
+          <Route
+            path=":categoryId"
+            element={
+              <PrivateRoute component={<TaskPage />} redirectTo="/login" />
+            }
+          />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/category" />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              component={<RegisterPage />}
+              redirectTo="/category"
+            />
+          }
+        />
       </Route>
     </Routes>
   );

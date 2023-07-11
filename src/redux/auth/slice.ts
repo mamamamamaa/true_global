@@ -15,7 +15,11 @@ const extraAction = [signIn, signUp, logout];
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    setAccessToken(state) {
+      state.accessToken = "dasdasdas";
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(signIn.fulfilled, (state, { payload }) => {
@@ -54,6 +58,6 @@ export const authSlice = createSlice({
       ),
 });
 
-export const {} = authSlice.actions;
+export const { setAccessToken } = authSlice.actions;
 
 export default authSlice.reducer;

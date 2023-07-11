@@ -14,7 +14,7 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/category" element={<CategoryPage />}>
-          <Route path="/:categoryId" element={<TaskPage />} />
+          <Route path=":categoryId" element={<TaskPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

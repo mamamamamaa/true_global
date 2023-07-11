@@ -6,26 +6,43 @@ import { Routes } from "../types/common.ts";
 interface Props {
   pages: Routes;
   handleCloseNavMenu: () => void;
+  forPrivateRoutes?: boolean;
   flexGrow?: number;
+  isLoggedIn: boolean;
+  handleLogout: () => void;
 }
 
 export const Navigation: FC<Props> = ({
   pages,
-  handleCloseNavMenu,
+  forPrivateRoutes = false,
   flexGrow = 0,
+  isLoggedIn,
+  handleLogout,
 }) => {
   return (
     <Box sx={{ flexGrow, display: { xs: "none", md: "flex" }, gap: 5 }}>
-      {pages.map(({ pageName, pathTo }, idx) => (
+      {isLoggedIn && forPrivateRoutes ? (
         <Typography
           role="button"
-          key={idx}
-          onClick={handleCloseNavMenu}
+          onClick={handleLogout}
           sx={{ my: 2, color: "white", display: "block" }}
         >
-          <NavLink to={pathTo}>{pageName}</NavLink>
+          Logout
         </Typography>
-      ))}
+      ) : (
+        pages.map(
+          ({ pageName, pathTo, isPrivate }, idx) =>
+            forPrivateRoutes === isPrivate && (
+              <Typography
+                role="button"
+                key={idx}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <NavLink to={pathTo}>{pageName}</NavLink>
+              </Typography>
+            )
+        )
+      )}
     </Box>
   );
 };

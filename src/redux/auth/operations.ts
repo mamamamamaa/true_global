@@ -63,18 +63,19 @@ export const signUp = createAsyncThunk<
   }
 });
 
-export const logout = createAsyncThunk<undefined, any, { rejectValue: string }>(
-  "auth/logout",
-  async (_, thunkApi) => {
-    try {
-      await axios.get("/api/auth/logout");
+export const logout = createAsyncThunk<
+  undefined,
+  undefined,
+  { rejectValue: string }
+>("auth/logout", async (_, thunkApi) => {
+  try {
+    await axios.get("/api/auth/logout");
 
-      clearAuthHeader();
-    } catch (error) {
-      if (error instanceof AxiosError || error instanceof Error)
-        return thunkApi.rejectWithValue(error.message);
+    clearAuthHeader();
+  } catch (error) {
+    if (error instanceof AxiosError || error instanceof Error)
+      return thunkApi.rejectWithValue(error.message);
 
-      return thunkApi.rejectWithValue("Something went wrong");
-    }
+    return thunkApi.rejectWithValue("Something went wrong");
   }
-);
+});

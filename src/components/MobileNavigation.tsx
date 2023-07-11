@@ -1,19 +1,31 @@
 import { FC, MouseEvent } from "react";
-import { Box, IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { ALL_PAGES } from "../consts.ts";
+import { PAGES } from "../consts.ts";
 import { NavLink } from "react-router-dom";
 
 interface Props {
   handleOpenNavMenu: (event: MouseEvent<HTMLElement>) => void;
   handleCloseNavMenu: () => void;
   anchorElNav: null | HTMLElement;
+  isLoggedIn: boolean;
+  handleLogout: () => void;
 }
 
 export const MobileNavigation: FC<Props> = ({
   anchorElNav,
   handleOpenNavMenu,
   handleCloseNavMenu,
+  isLoggedIn,
+  handleLogout,
 }) => {
   return (
     <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -45,13 +57,28 @@ export const MobileNavigation: FC<Props> = ({
           display: { xs: "block", md: "none" },
         }}
       >
-        {ALL_PAGES.map(({ pageName, pathTo }, idx) => (
-          <MenuItem key={idx} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center">
-              <NavLink to={pathTo}>{pageName}</NavLink>
-            </Typography>
+        {PAGES.map(
+          ({ pageName, pathTo, isPrivate }, idx) =>
+            isPrivate !== isLoggedIn && (
+              <MenuItem key={idx} onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <NavLink to={pathTo}>{pageName}</NavLink>
+                </Typography>
+              </MenuItem>
+            )
+        )}
+
+        {isLoggedIn && <Divider />}
+        {isLoggedIn && (
+          <MenuItem onClick={handleCloseNavMenu}>
+            <Button
+              onClick={handleLogout}
+              style={{ textAlign: "center", paddingTop: 0, paddingBottom: 0 }}
+            >
+              Logout
+            </Button>
           </MenuItem>
-        ))}
+        )}
       </Menu>
     </Box>
   );

@@ -1,9 +1,9 @@
-export const PRIVATE_PAGES = [{ pageName: "Categories", pathTo: "/category" }];
-export const RESTRICTED_PAGES = [
-  { pageName: "SignIn", pathTo: "/login" },
-  { pageName: "SignUp", pathTo: "/register" },
-];
+import { Routes } from "./types/common.ts";
 
-export const ALL_PAGES = [...PRIVATE_PAGES, ...RESTRICTED_PAGES];
+export const PAGES: Routes = [
+  { pageName: "Categories", pathTo: "/category", isPrivate: false },
+  { pageName: "SignIn", pathTo: "/login", isPrivate: true },
+  { pageName: "SignUp", pathTo: "/register", isPrivate: true },
+];
 
 export const LOGO_TEXT = "True Global";

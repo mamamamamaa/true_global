@@ -2,12 +2,20 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { AuthState } from "../../types/auth.ts";
 import { logout, signIn, signUp } from "./operations.ts";
 
+// const initialState: AuthState = {
+//   email: null,
+//   accessToken: null,
+//   error: null,
+//   isLoading: false,
+//   isLoggedIn: false,
+// };
+
 const initialState: AuthState = {
-  email: null,
+  email: "maks.denishchuk@gmail.com",
   accessToken: null,
   error: null,
   isLoading: false,
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 
 const extraAction = [signIn, signUp, logout];

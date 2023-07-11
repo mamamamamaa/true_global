@@ -4,6 +4,7 @@ import { TaskState } from "../../types/task.ts";
 const initialState: TaskState = {
   error: null,
   isLoading: false,
+  currentCategory: null,
   tasks: [],
 };
 

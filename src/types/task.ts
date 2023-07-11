@@ -1,6 +1,7 @@
 export interface TaskState {
   error: string | null | undefined;
   isLoading: boolean;
+  currentCategory: number | null;
   tasks: Task[];
 }
 

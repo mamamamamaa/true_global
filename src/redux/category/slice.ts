@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CategoryInitialState } from "../../types/category.ts";
+import { CategoryState } from "../../types/category.ts";
 
-const initialState: CategoryInitialState = {
+const initialState: CategoryState = {
   error: null,
   isLoading: false,
   categories: [],

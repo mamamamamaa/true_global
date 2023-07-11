@@ -1,4 +1,4 @@
-export interface AuthInitialState {
+export interface AuthState {
   error: string | null | undefined;
   isLoading: boolean;
   isLoggedIn: boolean;

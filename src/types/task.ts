@@ -1,4 +1,4 @@
-export interface TaskInitialState {
+export interface TaskState {
   error: null;
   isLoading: false;
   tasks: Task[];

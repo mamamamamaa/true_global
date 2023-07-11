@@ -1,8 +1,8 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { AuthInitialState } from "../../types/auth.ts";
+import { AuthState } from "../../types/auth.ts";
 import { logout, signIn, signUp } from "./operations.ts";
 
-const initialState: AuthInitialState = {
+const initialState: AuthState = {
   email: null,
   accessToken: null,
   error: null,

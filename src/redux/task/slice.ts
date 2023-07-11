@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TaskInitialState } from "../../types/task.ts";
+import { TaskState } from "../../types/task.ts";
 
-const initialState: TaskInitialState = {
+const initialState: TaskState = {
   error: null,
   isLoading: false,
   tasks: [],

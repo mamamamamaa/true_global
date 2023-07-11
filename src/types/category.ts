@@ -1,4 +1,4 @@
-export interface CategoryInitialState {
+export interface CategoryState {
   error: null;
   isLoading: false;
   categories: Category[];

@@ -8,6 +8,8 @@ import { Loader } from "./Loader.tsx";
 export const Layout: FC = () => {
   return (
     <>
+      <Toast />
+      <Loader />
       <Header />
       <main>
         <Suspense>
@@ -15,8 +17,6 @@ export const Layout: FC = () => {
         </Suspense>
       </main>
       <Footer />
-      <Toast />
-      <Loader />
     </>
   );
 };

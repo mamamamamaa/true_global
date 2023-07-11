@@ -13,7 +13,7 @@ export const Logo: FC = () => {
         component="a"
         href="/"
         sx={{
-          mr: 2,
+          mr: 5,
           display: { xs: "none", md: "flex" },
           fontFamily: "monospace",
           fontWeight: 700,
@@ -31,7 +31,7 @@ export const Logo: FC = () => {
         component="a"
         href="/"
         sx={{
-          mr: 2,
+          mr: 5,
           display: { xs: "flex", md: "none" },
           flexGrow: 1,
           fontFamily: "monospace",

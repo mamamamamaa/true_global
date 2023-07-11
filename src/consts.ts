@@ -7,3 +7,5 @@ export const PAGES: Routes = [
 ];
 
 export const LOGO_TEXT = "True Global";
+
+export const REGISTER_FORM_VALUES = {};

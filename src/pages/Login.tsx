@@ -1,6 +1,10 @@
 import { FC } from "react";
 
 const Login: FC = () => {
-  return <>Login page</>;
+  return (
+    <>
+      <h1>Login page</h1>
+    </>
+  );
 };
 export default Login;

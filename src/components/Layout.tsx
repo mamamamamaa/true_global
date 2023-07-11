@@ -13,7 +13,7 @@ export const Layout: FC = () => {
       <Loader />
       <Header />
       <main>
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{ py: 3 }}>
           <Suspense>
             <Outlet />
           </Suspense>

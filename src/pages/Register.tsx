@@ -1,7 +1,8 @@
 import { FC } from "react";
+import { From } from "../components/From.tsx";
 
 const Register: FC = () => {
-  return <>RegisterPage</>;
+  return <From />;
 };
 
 export default Register;

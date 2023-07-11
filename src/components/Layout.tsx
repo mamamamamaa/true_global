@@ -4,6 +4,7 @@ import { Toast } from "./Toast.tsx";
 import { Header } from "./Header.tsx";
 import { Footer } from "./Footer.tsx";
 import { Loader } from "./Loader.tsx";
+import { Container } from "@mui/material";
 
 export const Layout: FC = () => {
   return (
@@ -12,9 +13,11 @@ export const Layout: FC = () => {
       <Loader />
       <Header />
       <main>
-        <Suspense>
-          <Outlet />
-        </Suspense>
+        <Container maxWidth="xl">
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </Container>
       </main>
       <Footer />
     </>

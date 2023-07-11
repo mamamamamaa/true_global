@@ -11,11 +11,13 @@ import {
 import storage from "redux-persist/lib/storage";
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/slice.ts";
+import categoryReducer from "./category/slice.ts";
+import taskReducer from "./task/slice.ts";
 
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["cart", "userOrderData", "totalPrice"],
+  blacklist: ["error", "isLoading"],
 };
 
 const pepersistedReducer = persistReducer(authPersistConfig, authReducer);
@@ -23,8 +25,8 @@ const pepersistedReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: pepersistedReducer,
-    category: pepersistedReducer,
-    task: pepersistedReducer,
+    category: categoryReducer,
+    task: taskReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

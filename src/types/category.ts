@@ -1,11 +1,11 @@
 export interface CategoryInitialState {
-    email: null,
-    error: null,
-    isLoading: false,
-    categories:
+  error: null;
+  isLoading: false;
+  categories: Category[];
 }
 
 export interface Category {
-    id: string;
-    name: string;
+  id: number;
+  name: string;
+  taskCount: number;
 }

@@ -1,21 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AuthInitialState } from "../../types/auth.ts";
+import { CategoryInitialState } from "../../types/category.ts";
 
-const initialState: AuthInitialState = {
-  email: null,
-  accessToken: null,
+const initialState: CategoryInitialState = {
   error: null,
   isLoading: false,
-  isLoggedIn: false,
+  categories: [],
 };
 
-export const authSlice = createSlice({
-  name: "auth",
+export const categorySlice = createSlice({
+  name: "category",
   initialState,
   reducers: {},
   extraReducers: (builder) => builder,
 });
 
-export const {} = authSlice.actions;
+export const {} = categorySlice.actions;
 
-export default authSlice.reducer;
+export default categorySlice.reducer;

@@ -23,7 +23,8 @@ export const REGISTER_FORM_VALUES: FormValues = {
       .required("Email is required"),
     password: Yup.string()
       .required("Password is required")
-      .min(8, "Password must be at least 8 characters"),
+      .min(6, "Password must be at least 8 characters")
+      .max(30, "Maximum password length 30 characters"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords must match")
       .required("Confirm Password is required"),
@@ -32,5 +33,27 @@ export const REGISTER_FORM_VALUES: FormValues = {
     { label: "Email", name: "email", type: "text" },
     { label: "Password", name: "password", type: "password" },
     { label: "Confirm Password", name: "confirmPassword", type: "password" },
+  ],
+};
+
+export const LOGIN_FORM_VALUES: FormValues = {
+  initialValues: {
+    email: "",
+    password: "",
+  },
+  submitButtonText: "Login",
+  formLabel: "Login Form",
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 8 characters")
+      .max(30, "Maximum password length 30 characters"),
+  }),
+  inputs: [
+    { label: "Email", name: "email", type: "text" },
+    { label: "Password", name: "password", type: "password" },
   ],
 };

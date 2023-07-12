@@ -10,7 +10,7 @@ export const getCategories = createAsyncThunk<
   Category[],
   undefined,
   { rejectValue: string }
->("category/getCategory", async (_, thunkApi) => {
+>("category/getCategories", async (_, thunkApi) => {
   try {
     const { data } = await axios.get<Category[]>("/api/category");
 
@@ -63,7 +63,7 @@ export const removeCategory = createAsyncThunk<
   Category,
   number,
   { rejectValue: string }
->("category/updateCategory", async (categoryId, thunkApi) => {
+>("category/removeCategory", async (categoryId, thunkApi) => {
   try {
     const { data } = await axios.delete<Category>(
       `/api/category/${categoryId}`

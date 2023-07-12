@@ -10,7 +10,7 @@ const initialState: AuthState = {
   isLoggedIn: false,
 };
 
-const extraAction = [signIn, signUp, logout, refresh];
+const extraAuthAction = [signIn, signUp, logout, refresh];
 
 export const authSlice = createSlice({
   name: "auth",
@@ -38,20 +38,20 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addMatcher(
-        isAnyOf(...extraAction.map((action) => action.pending)),
+        isAnyOf(...extraAuthAction.map((action) => action.pending)),
         (state) => {
           state.isLoading = true;
           state.error = null;
         }
       )
       .addMatcher(
-        isAnyOf(...extraAction.map((action) => action.fulfilled)),
+        isAnyOf(...extraAuthAction.map((action) => action.fulfilled)),
         (state) => {
           state.isLoading = false;
         }
       )
       .addMatcher(
-        isAnyOf(...extraAction.map((action) => action.rejected)),
+        isAnyOf(...extraAuthAction.map((action) => action.rejected)),
         (state, { payload }) => {
           state.isLoading = false;
           state.error = payload;

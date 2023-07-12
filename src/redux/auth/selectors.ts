@@ -1,7 +1,7 @@
 import { RootState } from "../../types/store.ts";
 
 export const selectAuthAccessToken = (state: RootState) =>
-  state.auth.accessToken;
+  state.auth.access_token;
 
 export const selectAuthEmail = (state: RootState) => state.auth.email;
 

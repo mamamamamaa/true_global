@@ -65,6 +65,7 @@ export const removeCategory = createAsyncThunk<
   { rejectValue: string }
 >("category/removeCategory", async (categoryId, thunkApi) => {
   try {
+    console.log(categoryId);
     const { data } = await axios.delete<Category>(
       `/api/category/${categoryId}`
     );

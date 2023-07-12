@@ -9,7 +9,9 @@ const Category: FC = () => {
   const categories = useAppSelector(selectCategories);
 
   useEffect(() => {
-    void dispatch(getCategories());
+    if (categories.length === 0) {
+      void dispatch(getCategories());
+    }
   }, []);
 
   return <>{categories && <CategoriesList categories={categories} />}</>;

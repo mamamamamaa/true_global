@@ -1,23 +1,17 @@
-import { FC, MouseEventHandler } from "react";
+import { FC } from "react";
 import { Card } from "@mui/material";
 
 import { Category } from "../types/category.ts";
 import { CategoriesCardContent } from "./CategoriesCardContent.tsx";
 import { CategoriesCardActions } from "./CategoriesCardActions.tsx";
 
-interface Props extends Category {
-  anchorEl: (EventTarget & HTMLButtonElement) | null;
-  handleMenuOpen: MouseEventHandler<HTMLButtonElement>;
-  handleMenuClose: () => void;
-  handleRemove: () => void;
-  handleEdit: () => void;
-}
+interface Props extends Category {}
 
 export const CategoriesCard: FC<Props> = ({
   date_created,
   name,
   task_count,
-  ...actionData
+  id,
 }) => {
   return (
     <Card
@@ -34,7 +28,7 @@ export const CategoriesCard: FC<Props> = ({
         date_created={date_created}
         name={name}
       />
-      <CategoriesCardActions {...actionData} />
+      <CategoriesCardActions id={id} />
     </Card>
   );
 };

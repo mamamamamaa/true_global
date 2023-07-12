@@ -2,6 +2,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import { Typography } from "@mui/material";
 import { LOGO_TEXT } from "../consts.ts";
 import { FC } from "react";
+import { NavLink } from "react-router-dom";
 
 export const Logo: FC = () => {
   return (
@@ -10,8 +11,6 @@ export const Logo: FC = () => {
       <Typography
         variant="h6"
         noWrap
-        component="a"
-        href="/"
         sx={{
           mr: 5,
           display: { xs: "none", md: "flex" },
@@ -22,14 +21,12 @@ export const Logo: FC = () => {
           textDecoration: "none",
         }}
       >
-        {LOGO_TEXT}
+        <NavLink to="/">{LOGO_TEXT}</NavLink>
       </Typography>
       <PublicIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
       <Typography
         variant="h5"
         noWrap
-        component="a"
-        href="/"
         sx={{
           mr: 5,
           display: { xs: "flex", md: "none" },
@@ -41,7 +38,7 @@ export const Logo: FC = () => {
           textDecoration: "none",
         }}
       >
-        {LOGO_TEXT}
+        <NavLink to="/">{LOGO_TEXT}</NavLink>
       </Typography>
     </>
   );

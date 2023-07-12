@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../redux/hooks.ts";
 import { removeCategory } from "../../redux/category/operations.ts";
 import { setToggleEditModal } from "../../redux/category/slice.ts";
 import { WarningDialog } from "../WarningDialog.tsx";
+import { useWarningDialog } from "../../hooks/useWarningDialog.ts";
 
 interface Props {
   id: number;
@@ -16,21 +17,13 @@ export const CategoryCardActions: FC<Props> = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState<
     (EventTarget & HTMLButtonElement) | null
   >(null);
-  const [openWarningModal, setOpenWarningModal] = useState<boolean>(false);
+  const { open, handleOpen, handleClose } = useWarningDialog();
   const handleMenuOpen: MouseEventHandler<HTMLButtonElement> = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleOpenWarningModal = () => {
-    setOpenWarningModal(true);
-  };
-
-  const handleCloseWarningModal = () => {
-    setOpenWarningModal(false);
   };
 
   const handleEditCategory = () => {
@@ -55,16 +48,16 @@ export const CategoryCardActions: FC<Props> = ({ id }) => {
           onClose={handleMenuClose}
         >
           <MenuItem onClick={handleEditCategory}>Edit</MenuItem>
-          <MenuItem onClick={handleOpenWarningModal}>Remove</MenuItem>
+          <MenuItem onClick={handleOpen}>Remove</MenuItem>
         </Menu>
         <Button size="small">
           <NavLink to={`./${id}`}>More</NavLink>
         </Button>
       </CardActions>
       <WarningDialog
-        handleCloseModal={handleCloseWarningModal}
+        handleCloseModal={handleClose}
         action={handleRemoveCategory}
-        openModal={openWarningModal}
+        openModal={open}
         warningText={"Do you really want to delete this category?"}
       />
     </>

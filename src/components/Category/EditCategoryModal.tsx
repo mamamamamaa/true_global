@@ -1,15 +1,16 @@
 import { FC } from "react";
-import { Box, Button, Modal, TextField } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
+import * as Yup from "yup";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Box, Button, TextField, Typography } from "@mui/material";
+
 import {
   selectCategories,
   selectEditCategoryModal,
 } from "../../redux/category/selectors.ts";
+import { ModalWindow } from "../ModalWindow.tsx";
 import { setToggleEditModal } from "../../redux/category/slice.ts";
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import { updateCategory } from "../../redux/category/operations.ts";
-
-import * as Yup from "yup";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 
 const initialValues = {
   name: "",
@@ -40,58 +41,47 @@ export const EditCategoryModal: FC = () => {
   });
 
   return (
-    <Modal open={isOpen} onClose={handleClose}>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          translate: "-50% -50%",
-          backgroundColor: "white",
-          width: "50%",
-          padding: 3,
-          borderRadius: 10,
-        }}
+    <ModalWindow handleClose={handleClose} isOpen={isOpen}>
+      <Typography variant="h5" mb={2}>
+        Edit <b>{name}</b> category
+      </Typography>
+      <Formik
+        initialValues={{ name }}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
       >
-        <h1>Form Example</h1>
-        <Formik
-          initialValues={{ name }}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          <Form>
-            <Field
-              as={TextField}
-              name="name"
-              label="Name"
-              variant="outlined"
-              fullWidth
-            />
-            <ErrorMessage name="name" component="div" />
+        <Form>
+          <Field
+            as={TextField}
+            name="name"
+            label="Name"
+            variant="outlined"
+            fullWidth
+          />
+          <ErrorMessage name="name" component="div" />
 
-            <Box
-              sx={{
-                marginTop: 3,
-                display: "flex",
-                justifyContent: "center",
-                gap: 5,
-              }}
+          <Box
+            sx={{
+              marginTop: 3,
+              display: "flex",
+              justifyContent: "center",
+              gap: 5,
+            }}
+          >
+            <Button
+              type="button"
+              onClick={handleClose}
+              variant="contained"
+              color="info"
             >
-              <Button
-                type="button"
-                onClick={handleClose}
-                variant="contained"
-                color="info"
-              >
-                Cancel
-              </Button>
-              <Button type="submit" variant="contained" color="primary">
-                Save
-              </Button>
-            </Box>
-          </Form>
-        </Formik>
-      </Box>
-    </Modal>
+              Cancel
+            </Button>
+            <Button type="submit" variant="contained" color="primary">
+              Save
+            </Button>
+          </Box>
+        </Form>
+      </Formik>
+    </ModalWindow>
   );
 };

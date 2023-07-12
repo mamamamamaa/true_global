@@ -28,14 +28,14 @@ export const App = () => {
           element={
             <PrivateRoute component={<CategoryPage />} redirectTo="/login" />
           }
-        >
-          <Route
-            path=":categoryId"
-            element={
-              <PrivateRoute component={<TaskPage />} redirectTo="/login" />
-            }
-          />
-        </Route>
+        />
+        <Route
+          path=":categoryId/tasks"
+          element={
+            <PrivateRoute component={<TaskPage />} redirectTo="/login" />
+          }
+        />
+
         <Route
           path="/login"
           element={

@@ -22,13 +22,6 @@ export interface CreateCategoryModal {
   isOpen: boolean;
 }
 
-export interface CategoryResponse {
-  id: number;
-  name: string;
-  date_created: string;
-  task_count: number;
-}
-
 export interface AddCategoryDto {
   name: string;
 }

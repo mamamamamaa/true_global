@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TaskState } from "../../types/task.ts";
 
 const initialState: TaskState = {
@@ -11,10 +11,14 @@ const initialState: TaskState = {
 export const taskSlice = createSlice({
   name: "task",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentCategory(state, { payload }: PayloadAction<number>) {
+      state.currentCategory = payload;
+    },
+  },
   extraReducers: (builder) => builder,
 });
 
-export const {} = taskSlice.actions;
+export const { setCurrentCategory } = taskSlice.actions;
 
 export default taskSlice.reducer;

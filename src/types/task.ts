@@ -9,6 +9,20 @@ export interface Task {
   id: number;
   name: string;
   description: string;
-  date_start: Date;
-  date_end: Date;
+  date_start: string;
+  date_end: string;
+}
+
+export interface CreateTaskDto {
+  name: string;
+  description: string;
+  date_start: string;
+  date_end: string;
+}
+
+export interface UpdateTaskDto {
+  name?: string;
+  description?: string;
+  date_start?: string;
+  date_end?: string;
 }

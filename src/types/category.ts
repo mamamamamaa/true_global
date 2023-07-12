@@ -7,5 +7,5 @@ export interface CategoryState {
 export interface Category {
   id: number;
   name: string;
-  taskCount: number;
+  task_count: number;
 }

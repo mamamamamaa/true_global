@@ -9,6 +9,6 @@ export interface Task {
   id: number;
   name: string;
   description: string;
-  dateStart: Date;
-  dateEnd: Date;
+  date_start: Date;
+  date_end: Date;
 }

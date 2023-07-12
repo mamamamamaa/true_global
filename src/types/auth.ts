@@ -3,7 +3,7 @@ export interface AuthState {
   isLoading: boolean;
   isLoggedIn: boolean;
   email: string | null;
-  accessToken: string | null;
+  access_token: string | null;
 }
 
 export interface RefreshResponse {
@@ -12,7 +12,7 @@ export interface RefreshResponse {
 
 export interface SignInResponse {
   email: string;
-  accessToken: string;
+  access_token: string;
 }
 
 export interface SignIn {

@@ -17,7 +17,7 @@ import taskReducer from "./task/slice.ts";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["accessToken"],
+  whitelist: ["access_token"],
 };
 
 const pepersistedReducer = persistReducer(authPersistConfig, authReducer);

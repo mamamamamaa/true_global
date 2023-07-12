@@ -4,7 +4,7 @@ import { logout, refresh, signIn, signUp } from "./operations.ts";
 
 const initialState: AuthState = {
   email: null,
-  accessToken: null,
+  access_token: null,
   error: null,
   isLoading: false,
   isLoggedIn: false,
@@ -20,12 +20,12 @@ export const authSlice = createSlice({
     builder
       .addCase(signIn.fulfilled, (state, { payload }) => {
         state.isLoggedIn = true;
-        state.accessToken = payload.accessToken;
+        state.access_token = payload.access_token;
         state.email = payload.email;
       })
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.isLoggedIn = true;
-        state.accessToken = payload.accessToken;
+        state.access_token = payload.access_token;
         state.email = payload.email;
       })
       .addCase(refresh.fulfilled, (state, { payload }) => {
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.email = null;
-        state.accessToken = null;
+        state.access_token = null;
         state.isLoggedIn = false;
       })
       .addMatcher(

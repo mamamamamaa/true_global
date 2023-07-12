@@ -32,7 +32,7 @@ export const signIn = createAsyncThunk<
       userData
     );
 
-    setAuthHeader(data.accessToken);
+    setAuthHeader(data.access_token);
 
     return data;
   } catch (error) {
@@ -54,7 +54,7 @@ export const signUp = createAsyncThunk<
       userData
     );
 
-    setAuthHeader(data.accessToken);
+    setAuthHeader(data.access_token);
 
     return data;
   } catch (error) {
@@ -72,12 +72,12 @@ export const refresh = createAsyncThunk<
 >("auth/refresh", async (_, thunkApi) => {
   const state = thunkApi.getState() as RootState;
 
-  const { accessToken } = state.auth;
+  const { access_token } = state.auth;
 
-  if (!accessToken) return thunkApi.rejectWithValue("Unable to fetch user");
+  if (!access_token) return thunkApi.rejectWithValue("Unable to fetch user");
 
   try {
-    setAuthHeader(accessToken);
+    setAuthHeader(access_token);
 
     const { data } = await axios.get<RefreshResponse>("/api/auth/refresh");
 

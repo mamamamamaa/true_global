@@ -1,9 +1,9 @@
 import { FC, MouseEventHandler, useState } from "react";
 import { Button, CardActions, Menu, MenuItem } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { useAppDispatch } from "../redux/hooks.ts";
-import { removeCategory } from "../redux/category/operations.ts";
-import { setOpenEditModal } from "../redux/category/slice.ts";
+import { useAppDispatch } from "../../redux/hooks.ts";
+import { removeCategory } from "../../redux/category/operations.ts";
+import { setToggleEditModal } from "../../redux/category/slice.ts";
 
 interface Props {
   id: number;
@@ -23,7 +23,7 @@ export const CategoryCardActions: FC<Props> = ({ id }) => {
   };
 
   const handleEditCategory = () => {
-    void dispatch(setOpenEditModal(id));
+    void dispatch(setToggleEditModal({ categoryId: id, isOpen: true }));
     handleMenuClose();
   };
 

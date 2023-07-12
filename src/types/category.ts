@@ -2,10 +2,8 @@ export interface CategoryState {
   error: string | null | undefined;
   isLoading: boolean;
   categories: Category[];
-  editModal: {
-    isOpen: boolean;
-    categoryId: number | null;
-  };
+  editCategoryModal: EditCategoryModal;
+  createCategoryModal: CreateCategoryModal;
 }
 
 export interface Category {
@@ -13,6 +11,15 @@ export interface Category {
   name: string;
   date_created: string;
   task_count: number;
+}
+
+export interface EditCategoryModal {
+  isOpen: boolean;
+  categoryId: number | null;
+}
+
+export interface CreateCategoryModal {
+  isOpen: boolean;
 }
 
 export interface CategoryResponse {

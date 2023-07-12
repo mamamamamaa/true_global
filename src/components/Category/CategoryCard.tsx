@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Card } from "@mui/material";
 
-import { Category } from "../types/category.ts";
+import { Category } from "../../types/category.ts";
 import { CategoryCardContent } from "./CategoryCardContent.tsx";
 import { CategoryCardActions } from "./CategoryCardActions.tsx";
 

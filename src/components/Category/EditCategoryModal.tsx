@@ -1,28 +1,30 @@
 import { FC } from "react";
 import { Box, Button, Modal, TextField } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../redux/hooks.ts";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 import {
   selectCategories,
-  selectCategoriesEditModal,
-} from "../redux/category/selectors.ts";
-import { setCloseEditModal } from "../redux/category/slice.ts";
+  selectEditCategoryModal,
+} from "../../redux/category/selectors.ts";
+import { setToggleEditModal } from "../../redux/category/slice.ts";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { updateCategory } from "../../redux/category/operations.ts";
+
 import * as Yup from "yup";
-import { updateCategory } from "../redux/category/operations.ts";
 
 const initialValues = {
   name: "",
 };
 
-export const CategoryEditModal: FC = () => {
+export const EditCategoryModal: FC = () => {
   const dispatch = useAppDispatch();
-  const { categoryId, isOpen } = useAppSelector(selectCategoriesEditModal);
+  const { categoryId, isOpen } = useAppSelector(selectEditCategoryModal);
   const categories = useAppSelector(selectCategories);
 
   const { name } =
     categories.find(({ id }) => id === categoryId) || initialValues;
 
-  const handleClose = () => void dispatch(setCloseEditModal());
+  const handleClose = () =>
+    void dispatch(setToggleEditModal({ isOpen: false, categoryId: null }));
 
   const handleSubmit = (values: { name: string }) => {
     if (categoryId)
@@ -31,10 +33,10 @@ export const CategoryEditModal: FC = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().notOneOf(
-      [name],
-      "Name must be different from initial value"
-    ),
+    name: Yup.string()
+      .min(6, "Category name must be at least 6 characters")
+      .max(30, "Maximum category name length 30 characters")
+      .notOneOf([name], "Name must be different from initial value"),
   });
 
   return (

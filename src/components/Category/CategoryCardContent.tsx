@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { CardContent, Typography } from "@mui/material";
-import { dateFormat } from "../utils/dateFormat.ts";
+import { dateFormat } from "../../utils/dateFormat.ts";
 
 interface Props {
   name: string;

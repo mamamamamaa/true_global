@@ -1,5 +1,9 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
-import { CategoryState } from "../../types/category.ts";
+import {
+  CategoryState,
+  CreateCategoryModal,
+  EditCategoryModal,
+} from "../../types/category.ts";
 import {
   addCategory,
   removeCategory,
@@ -11,8 +15,11 @@ const initialState: CategoryState = {
   error: null,
   isLoading: false,
   categories: [],
-  editModal: {
+  editCategoryModal: {
     categoryId: null,
+    isOpen: false,
+  },
+  createCategoryModal: {
     isOpen: false,
   },
 };
@@ -28,16 +35,18 @@ export const categorySlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-    setOpenEditModal(state, { payload }: PayloadAction<number>) {
-      state.editModal.categoryId = payload;
-      state.editModal.isOpen = true;
+    setToggleEditModal(state, { payload }: PayloadAction<EditCategoryModal>) {
+      state.editCategoryModal.categoryId = payload.categoryId;
+      state.editCategoryModal.isOpen = payload.isOpen;
     },
-
-    setCloseEditModal(state) {
-      state.editModal.categoryId = null;
-      state.editModal.isOpen = false;
+    setToggleCreateModal(
+      state,
+      { payload }: PayloadAction<CreateCategoryModal>
+    ) {
+      state.createCategoryModal.isOpen = payload.isOpen;
     },
   },
+
   extraReducers: (builder) =>
     builder
       .addCase(addCategory.fulfilled, (state, { payload }) => {
@@ -78,6 +87,7 @@ export const categorySlice = createSlice({
       ),
 });
 
-export const { setOpenEditModal, setCloseEditModal } = categorySlice.actions;
+export const { setToggleEditModal, setToggleCreateModal } =
+  categorySlice.actions;
 
 export default categorySlice.reducer;

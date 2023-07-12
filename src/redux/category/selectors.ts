@@ -4,8 +4,11 @@ export const selectCategoryError = (state: RootState) => state.category.error;
 
 export const selectCategories = (state: RootState) => state.category.categories;
 
-export const selectCategoriesEditModal = (state: RootState) =>
-  state.category.editModal;
+export const selectEditCategoryModal = (state: RootState) =>
+  state.category.editCategoryModal;
+
+export const selectCreateCategoryModal = (state: RootState) =>
+  state.category.createCategoryModal;
 
 export const selectCategoryIsLoading = (state: RootState) =>
   state.category.isLoading;

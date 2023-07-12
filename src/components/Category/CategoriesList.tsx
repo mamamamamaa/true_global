@@ -1,8 +1,8 @@
 import { FC, Fragment } from "react";
 import { Box } from "@mui/material";
-import { Category } from "../types/category.ts";
+import { Category } from "../../types/category.ts";
 import { CategoryCard } from "./CategoryCard.tsx";
-import { CategoryEditModal } from "./CategoryEditModal.tsx";
+import { EditCategoryModal } from "./EditCategoryModal.tsx";
 
 interface Props {
   categories: Category[];
@@ -18,7 +18,7 @@ export const CategoriesList: FC<Props> = ({ categories }) => {
           </Fragment>
         ))}
       </Box>
-      <CategoryEditModal />
+      <EditCategoryModal />
     </>
   );
 };

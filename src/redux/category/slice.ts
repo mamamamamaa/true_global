@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { CategoryState } from "../../types/category.ts";
 import {
   addCategory,
@@ -11,6 +11,10 @@ const initialState: CategoryState = {
   error: null,
   isLoading: false,
   categories: [],
+  editModal: {
+    categoryId: null,
+    isOpen: false,
+  },
 };
 
 const extraCategoryAction = [
@@ -23,7 +27,17 @@ const extraCategoryAction = [
 export const categorySlice = createSlice({
   name: "category",
   initialState,
-  reducers: {},
+  reducers: {
+    setOpenEditModal(state, { payload }: PayloadAction<number>) {
+      state.editModal.categoryId = payload;
+      state.editModal.isOpen = true;
+    },
+
+    setCloseEditModal(state) {
+      state.editModal.categoryId = null;
+      state.editModal.isOpen = false;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(addCategory.fulfilled, (state, { payload }) => {
@@ -64,6 +78,6 @@ export const categorySlice = createSlice({
       ),
 });
 
-export const {} = categorySlice.actions;
+export const { setOpenEditModal, setCloseEditModal } = categorySlice.actions;
 
 export default categorySlice.reducer;

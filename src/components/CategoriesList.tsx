@@ -1,7 +1,8 @@
 import { FC, Fragment } from "react";
 import { Box } from "@mui/material";
 import { Category } from "../types/category.ts";
-import { CategoriesCard } from "./CategoriesCard.tsx";
+import { CategoryCard } from "./CategoryCard.tsx";
+import { CategoryEditModal } from "./CategoryEditModal.tsx";
 
 interface Props {
   categories: Category[];
@@ -9,12 +10,15 @@ interface Props {
 
 export const CategoriesList: FC<Props> = ({ categories }) => {
   return (
-    <Box>
-      {categories.map((category, idx) => (
-        <Fragment key={idx}>
-          <CategoriesCard {...category} />
-        </Fragment>
-      ))}
-    </Box>
+    <>
+      <Box>
+        {categories.map((category, idx) => (
+          <Fragment key={idx}>
+            <CategoryCard {...category} />
+          </Fragment>
+        ))}
+      </Box>
+      <CategoryEditModal />
+    </>
   );
 };

@@ -8,7 +8,7 @@ interface Props {
   date_created: string;
 }
 
-export const CategoriesCardContent: FC<Props> = ({
+export const CategoryCardContent: FC<Props> = ({
   task_count,
   name,
   date_created,

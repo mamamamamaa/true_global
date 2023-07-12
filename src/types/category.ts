@@ -2,6 +2,10 @@ export interface CategoryState {
   error: string | null | undefined;
   isLoading: boolean;
   categories: Category[];
+  editModal: {
+    isOpen: boolean;
+    categoryId: number | null;
+  };
 }
 
 export interface Category {

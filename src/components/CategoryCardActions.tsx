@@ -3,17 +3,17 @@ import { Button, CardActions, Menu, MenuItem } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks.ts";
 import { removeCategory } from "../redux/category/operations.ts";
+import { setOpenEditModal } from "../redux/category/slice.ts";
 
 interface Props {
   id: number;
 }
 
-export const CategoriesCardActions: FC<Props> = ({ id }) => {
+export const CategoryCardActions: FC<Props> = ({ id }) => {
   const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = useState<
     (EventTarget & HTMLButtonElement) | null
   >(null);
-
   const handleMenuOpen: MouseEventHandler<HTMLButtonElement> = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -23,6 +23,7 @@ export const CategoriesCardActions: FC<Props> = ({ id }) => {
   };
 
   const handleEditCategory = () => {
+    void dispatch(setOpenEditModal(id));
     handleMenuClose();
   };
 

@@ -6,6 +6,10 @@ export interface AuthState {
   accessToken: string | null;
 }
 
+export interface RefreshResponse {
+  email: string;
+}
+
 export interface SignInResponse {
   email: string;
   accessToken: string;

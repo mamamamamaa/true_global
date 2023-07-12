@@ -1,22 +1,34 @@
 import { FC } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { FormValues } from "../types/common.ts";
+import {
+  FormValues,
+  SignInInitialValues,
+  SignUpInitialValues,
+} from "../types/common.ts";
 
-export const From: FC<FormValues> = ({
+interface Props extends FormValues {
+  handleSubmit: (values: SignUpInitialValues | SignInInitialValues) => void;
+}
+
+export const From: FC<Props> = ({
   initialValues,
   validationSchema,
   inputs,
   submitButtonText,
   formLabel,
+  handleSubmit,
 }) => {
-  const handleSubmit = (values) => {
-    console.log(values);
-  };
-
   return (
     <Box display="flex" justifyContent="center" alignItems="center">
-      <Box p={5} border="2px solid #f5f5f5" width="50%" borderRadius="10px">
+      <Box
+        sx={{
+          width: { xs: "100%", md: "50%" },
+          border: "2px solid #f5f5f5",
+          borderRadius: "10px",
+          padding: 5,
+        }}
+      >
         <Typography variant="h6" gutterBottom>
           {formLabel}
         </Typography>

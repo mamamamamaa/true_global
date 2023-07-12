@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { AuthState } from "../../types/auth.ts";
-import { logout, signIn, signUp } from "./operations.ts";
+import { logout, refresh, signIn, signUp } from "./operations.ts";
 
 const initialState: AuthState = {
   email: null,
@@ -10,7 +10,7 @@ const initialState: AuthState = {
   isLoggedIn: false,
 };
 
-const extraAction = [signIn, signUp, logout];
+const extraAction = [signIn, signUp, logout, refresh];
 
 export const authSlice = createSlice({
   name: "auth",
@@ -28,9 +28,14 @@ export const authSlice = createSlice({
         state.accessToken = payload.accessToken;
         state.email = payload.email;
       })
+      .addCase(refresh.fulfilled, (state, { payload }) => {
+        state.isLoggedIn = true;
+        state.email = payload.email;
+      })
       .addCase(logout.fulfilled, (state) => {
         state.email = null;
         state.accessToken = null;
+        state.isLoggedIn = false;
       })
       .addMatcher(
         isAnyOf(...extraAction.map((action) => action.pending)),

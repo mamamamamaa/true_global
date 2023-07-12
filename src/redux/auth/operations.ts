@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  RefreshResponse,
   SignIn,
   SignInResponse,
   SignUp,
   SignUpResponse,
 } from "../../types/auth.ts";
 import axios, { AxiosError } from "axios";
+import { RootState } from "../../types/store.ts";
 
 const { VITE_SERVER } = import.meta.env;
 
@@ -53,6 +55,31 @@ export const signUp = createAsyncThunk<
     );
 
     setAuthHeader(data.accessToken);
+
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError || error instanceof Error)
+      return thunkApi.rejectWithValue(error.message);
+
+    return thunkApi.rejectWithValue("Something went wrong");
+  }
+});
+
+export const refresh = createAsyncThunk<
+  RefreshResponse,
+  undefined,
+  { rejectValue: string }
+>("auth/refresh", async (_, thunkApi) => {
+  const state = thunkApi.getState() as RootState;
+
+  const { accessToken } = state.auth;
+
+  if (!accessToken) return thunkApi.rejectWithValue("Unable to fetch user");
+
+  try {
+    setAuthHeader(accessToken);
+
+    const { data } = await axios.get<RefreshResponse>("/api/auth/refresh");
 
     return data;
   } catch (error) {

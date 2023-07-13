@@ -21,7 +21,10 @@ interface Props {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Task name is required"),
-  description: Yup.string().required("Description is required"),
+  description: Yup.string()
+    .min(1, "Description must be at least 1 characters")
+    .max(500, "Maximum Description length 500 characters")
+    .required("Description is required"),
   date_start: Yup.date().required("Start date is required"),
   date_end: Yup.date()
     .required("End date is required")

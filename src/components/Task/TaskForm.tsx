@@ -1,6 +1,8 @@
 import { FC } from "react";
+import { DatePicker } from "@mui/x-date-pickers";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button, TextareaAutosize, TextField } from "@mui/material";
+
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
@@ -38,7 +40,7 @@ export const TaskForm: FC = () => {
             <Field
               as={TextField}
               name="taskName"
-              label="Имя таски"
+              label="Task name"
               variant="outlined"
               fullWidth
             />
@@ -50,7 +52,7 @@ export const TaskForm: FC = () => {
               as={TextareaAutosize}
               name="description"
               rowsMin={3}
-              placeholder="Описание"
+              placeholder="Description"
               fullWidth
             />
             <ErrorMessage name="description" component="div" />
@@ -60,9 +62,8 @@ export const TaskForm: FC = () => {
             <Field
               component={DatePicker}
               name="startDate"
-              label="Дата начала"
+              label="Start date"
               inputVariant="outlined"
-              format="dd.MM.yyyy"
               fullWidth
             />
             <ErrorMessage name="startDate" component="div" />
@@ -72,7 +73,7 @@ export const TaskForm: FC = () => {
             <Field
               component={DatePicker}
               name="endDate"
-              label="Дата конца"
+              label="End date"
               inputVariant="outlined"
               format="dd.MM.yyyy"
               fullWidth

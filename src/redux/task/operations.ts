@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { CreateTaskDto, Task } from "../../types/task.ts";
+import { CreateTaskDto, Task, UpdateTaskDto } from "../../types/task.ts";
 import { AxiosError } from "axios";
 import axios from "axios";
 
@@ -39,7 +39,7 @@ export const createTask = createAsyncThunk<
 
 export const updateTask = createAsyncThunk<
   Task,
-  { dto: CreateTaskDto; taskId: number },
+  { dto: UpdateTaskDto; taskId: number },
   { rejectValue: string }
 >("task/updateTask", async ({ dto, taskId }, thunkApi) => {
   try {

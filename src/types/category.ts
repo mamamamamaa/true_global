@@ -14,8 +14,7 @@ export interface Category {
 }
 
 export interface EditCategoryModal {
-  isOpen: boolean;
-  categoryId: number | null;
+  category: Category | null;
 }
 
 export interface CreateCategoryModal {

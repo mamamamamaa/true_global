@@ -5,14 +5,11 @@ import { Category } from "../../types/category.ts";
 import { CategoryCardContent } from "./CategoryCardContent.tsx";
 import { CategoryCardActions } from "./CategoryCardActions.tsx";
 
-interface Props extends Category {}
+interface Props {
+  category: Category;
+}
 
-export const CategoryCard: FC<Props> = ({
-  date_created,
-  name,
-  task_count,
-  id,
-}) => {
+export const CategoryCard: FC<Props> = ({ category }) => {
   return (
     <>
       <Card
@@ -24,12 +21,8 @@ export const CategoryCard: FC<Props> = ({
           alignItems: "center",
         }}
       >
-        <CategoryCardContent
-          task_count={task_count}
-          date_created={date_created}
-          name={name}
-        />
-        <CategoryCardActions id={id} />
+        <CategoryCardContent {...category} />
+        <CategoryCardActions category={category} />
       </Card>
     </>
   );

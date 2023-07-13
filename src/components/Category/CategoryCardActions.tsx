@@ -6,12 +6,13 @@ import { removeCategory } from "../../redux/category/operations.ts";
 import { setToggleEditModal } from "../../redux/category/slice.ts";
 import { WarningDialog } from "../WarningDialog.tsx";
 import { useWarningDialog } from "../../hooks/useWarningDialog.ts";
+import { Category } from "../../types/category.ts";
 
 interface Props {
-  id: number;
+  category: Category;
 }
 
-export const CategoryCardActions: FC<Props> = ({ id }) => {
+export const CategoryCardActions: FC<Props> = ({ category }) => {
   const dispatch = useAppDispatch();
 
   const [anchorEl, setAnchorEl] = useState<
@@ -27,12 +28,12 @@ export const CategoryCardActions: FC<Props> = ({ id }) => {
   };
 
   const handleEditCategory = () => {
-    void dispatch(setToggleEditModal({ categoryId: id, isOpen: true }));
+    void dispatch(setToggleEditModal({ category }));
     handleMenuClose();
   };
 
   const handleRemoveCategory = () => {
-    void dispatch(removeCategory(id));
+    void dispatch(removeCategory(category.id));
     handleMenuClose();
   };
 
@@ -51,7 +52,7 @@ export const CategoryCardActions: FC<Props> = ({ id }) => {
           <MenuItem onClick={handleOpen}>Remove</MenuItem>
         </Menu>
         <Button size="small">
-          <Link to={`/${id}/tasks`}>More</Link>
+          <Link to={`/${category.id}/tasks`}>More</Link>
         </Button>
       </CardActions>
       <WarningDialog

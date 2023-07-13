@@ -14,7 +14,7 @@ export const CategoriesList: FC<Props> = ({ categories }) => {
       <Box>
         {categories.map((category, idx) => (
           <Fragment key={idx}>
-            <CategoryCard {...category} />
+            <CategoryCard category={category} />
           </Fragment>
         ))}
       </Box>

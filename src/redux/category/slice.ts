@@ -16,8 +16,7 @@ const initialState: CategoryState = {
   isLoading: false,
   categories: [],
   editCategoryModal: {
-    categoryId: null,
-    isOpen: false,
+    category: null,
   },
   createCategoryModal: {
     isOpen: false,
@@ -36,8 +35,7 @@ export const categorySlice = createSlice({
   initialState,
   reducers: {
     setToggleEditModal(state, { payload }: PayloadAction<EditCategoryModal>) {
-      state.editCategoryModal.categoryId = payload.categoryId;
-      state.editCategoryModal.isOpen = payload.isOpen;
+      state.editCategoryModal.category = payload.category;
     },
     setToggleCreateModal(
       state,

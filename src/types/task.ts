@@ -3,6 +3,7 @@ export interface TaskState {
   isLoading: boolean;
   currentCategory: number | null;
   tasks: Task[];
+  activeTask: Task | null;
 }
 
 export interface Task {

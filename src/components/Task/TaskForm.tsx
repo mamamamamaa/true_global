@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { DatePicker } from "@mui/x-date-pickers";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button, TextareaAutosize, TextField } from "@mui/material";
 
@@ -40,7 +39,7 @@ export const TaskForm: FC = () => {
             <Field
               as={TextField}
               name="taskName"
-              label="Task name"
+              label="Task Name"
               variant="outlined"
               fullWidth
             />
@@ -53,36 +52,41 @@ export const TaskForm: FC = () => {
               name="description"
               rowsMin={3}
               placeholder="Description"
-              fullWidth
             />
-            <ErrorMessage name="description" component="div" />
           </div>
 
           <div>
             <Field
-              component={DatePicker}
+              as={TextField}
               name="startDate"
-              label="Start date"
-              inputVariant="outlined"
+              label="Start Date"
+              type="date"
+              variant="outlined"
               fullWidth
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
             <ErrorMessage name="startDate" component="div" />
           </div>
 
           <div>
             <Field
-              component={DatePicker}
+              as={TextField}
               name="endDate"
-              label="End date"
-              inputVariant="outlined"
-              format="dd.MM.yyyy"
+              label="End Date"
+              type="date"
+              variant="outlined"
               fullWidth
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
             <ErrorMessage name="endDate" component="div" />
           </div>
 
           <Button type="submit" variant="contained" color="primary">
-            Create task
+            Save
           </Button>
         </Form>
       </Formik>

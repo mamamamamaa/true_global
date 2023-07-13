@@ -6,5 +6,7 @@ export const selectTaskIsLoading = (state: RootState) => state.task.isLoading;
 
 export const selectTasks = (state: RootState) => state.task.tasks;
 
+export const selectActiveTask = (state: RootState) => state.task.activeTask;
+
 export const selectCurrentCategory = (state: RootState) =>
   state.task.currentCategory;

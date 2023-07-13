@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
-import { TaskState } from "../../types/task.ts";
+import { Task, TaskState } from "../../types/task.ts";
 import { createTask, getTasks, removeTask, updateTask } from "./operations.ts";
 
 const initialState: TaskState = {
@@ -7,6 +7,7 @@ const initialState: TaskState = {
   isLoading: false,
   currentCategory: null,
   tasks: [],
+  activeTask: null,
 };
 
 const extraTaskActions = [getTasks, createTask, updateTask, removeTask];
@@ -17,6 +18,10 @@ export const taskSlice = createSlice({
   reducers: {
     setCurrentCategory(state, { payload }: PayloadAction<number>) {
       state.currentCategory = payload;
+    },
+
+    setActiveTask(state, { payload }: PayloadAction<Task>) {
+      state.activeTask = payload;
     },
   },
   extraReducers: (builder) =>

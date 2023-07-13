@@ -3,33 +3,22 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Box, Button, TextField, Typography } from "@mui/material";
 
-import {
-  selectCategories,
-  selectEditCategoryModal,
-} from "../../redux/category/selectors.ts";
+import { selectEditCategoryModal } from "../../redux/category/selectors.ts";
 import { ModalWindow } from "../ModalWindow.tsx";
 import { setToggleEditModal } from "../../redux/category/slice.ts";
 import { updateCategory } from "../../redux/category/operations.ts";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 
-const initialValues = {
-  name: "",
-};
-
 export const EditCategoryModal: FC = () => {
   const dispatch = useAppDispatch();
-  const { categoryId, isOpen } = useAppSelector(selectEditCategoryModal);
-  const categories = useAppSelector(selectCategories);
-
-  const { name } =
-    categories.find(({ id }) => id === categoryId) || initialValues;
+  const { category } = useAppSelector(selectEditCategoryModal);
 
   const handleClose = () =>
-    void dispatch(setToggleEditModal({ isOpen: false, categoryId: null }));
+    void dispatch(setToggleEditModal({ category: null }));
 
   const handleSubmit = (values: { name: string }) => {
-    if (categoryId)
-      void dispatch(updateCategory({ id: categoryId, name: values.name }));
+    if (category?.id)
+      void dispatch(updateCategory({ id: category?.id, name: values.name }));
     handleClose();
   };
 
@@ -37,16 +26,16 @@ export const EditCategoryModal: FC = () => {
     name: Yup.string()
       .min(6, "Category name must be at least 6 characters")
       .max(30, "Maximum category name length 30 characters")
-      .notOneOf([name], "Name must be different from initial value"),
+      .notOneOf([category?.name], "Name must be different from initial value"),
   });
 
   return (
-    <ModalWindow handleClose={handleClose} isOpen={isOpen}>
+    <ModalWindow handleClose={handleClose} isOpen={Boolean(category?.id)}>
       <Typography variant="h5" mb={2}>
-        Edit <b>{name}</b> category
+        Edit <b>{category?.name}</b> category
       </Typography>
       <Formik
-        initialValues={{ name }}
+        initialValues={{ name: category?.name || "" }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >

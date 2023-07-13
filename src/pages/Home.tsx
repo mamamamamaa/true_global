@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useAppSelector } from "../redux/hooks.ts";
 import { selectAuthEmail } from "../redux/auth/selectors.ts";
 import { Box, Typography } from "@mui/material";
-import { TaskForm } from "../components/Task/TaskForm.tsx";
 
 const Home: FC = () => {
   const email = useAppSelector(selectAuthEmail);
@@ -21,7 +20,6 @@ const Home: FC = () => {
           Please login or register to access the features of our website.
         </Typography>
       )}
-      <TaskForm />
     </Box>
   );
 };

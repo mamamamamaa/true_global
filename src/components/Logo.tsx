@@ -33,7 +33,7 @@ export const Logo: FC = () => {
           flexGrow: 1,
           fontFamily: "monospace",
           fontWeight: 700,
-          letterSpacing: ".3rem",
+          letterSpacing: ".1.5rem",
           color: "inherit",
           textDecoration: "none",
         }}

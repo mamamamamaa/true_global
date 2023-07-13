@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { From } from "../components/From.tsx";
+import { AuthFrom } from "../components/AuthFrom.tsx";
 import { LOGIN_FORM_VALUES } from "../consts.ts";
 import { SignInInitialValues, SignUpInitialValues } from "../types/common.ts";
 import { signIn } from "../redux/auth/operations.ts";
@@ -15,6 +15,6 @@ const Login: FC = () => {
     void dispatch(signIn({ email, password }));
   };
 
-  return <From {...LOGIN_FORM_VALUES} handleSubmit={handleSubmit} />;
+  return <AuthFrom {...LOGIN_FORM_VALUES} handleSubmit={handleSubmit} />;
 };
 export default Login;

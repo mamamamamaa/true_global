@@ -11,6 +11,8 @@ const CategoryPage = lazy(() => import("./pages/Category.tsx"));
 const TaskPage = lazy(() => import("./pages/Task.tsx"));
 const LoginPage = lazy(() => import("./pages/Login.tsx"));
 const RegisterPage = lazy(() => import("./pages/Register.tsx"));
+const CreateTaskPage = lazy(() => import("./pages/CreateTask.tsx"));
+const UpdateTaskPage = lazy(() => import("./pages/UpdateTask.tsx"));
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +35,18 @@ export const App = () => {
           path=":categoryId/tasks"
           element={
             <PrivateRoute component={<TaskPage />} redirectTo="/login" />
+          }
+        />
+        <Route
+          path=":categoryId/create_task"
+          element={
+            <PrivateRoute component={<CreateTaskPage />} redirectTo="/login" />
+          }
+        />
+        <Route
+          path=":categoryId/update_task"
+          element={
+            <PrivateRoute component={<UpdateTaskPage />} redirectTo="/login" />
           }
         />
 

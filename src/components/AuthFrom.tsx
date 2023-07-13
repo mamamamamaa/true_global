@@ -11,7 +11,7 @@ interface Props extends FormValues {
   handleSubmit: (values: SignUpInitialValues | SignInInitialValues) => void;
 }
 
-export const From: FC<Props> = ({
+export const AuthFrom: FC<Props> = ({
   initialValues,
   validationSchema,
   inputs,

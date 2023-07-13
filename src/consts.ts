@@ -1,5 +1,6 @@
 import { FormValues, Routes } from "./types/common.ts";
 import * as Yup from "yup";
+import { CreateTaskDto } from "./types/task.ts";
 
 export const PAGES: Routes = [
   { pageName: "Categories", pathTo: "/category", isPrivate: false },
@@ -56,4 +57,11 @@ export const LOGIN_FORM_VALUES: FormValues = {
     { label: "Email", name: "email", type: "text" },
     { label: "Password", name: "password", type: "password" },
   ],
+};
+
+export const DEFAULT_TASK_FORM_INITIAL_VALUES: CreateTaskDto = {
+  name: "",
+  description: "",
+  date_start: "",
+  date_end: "",
 };

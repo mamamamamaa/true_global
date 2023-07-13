@@ -62,6 +62,6 @@ export const taskSlice = createSlice({
       ),
 });
 
-export const { setCurrentCategory } = taskSlice.actions;
+export const { setCurrentCategory, setActiveTask } = taskSlice.actions;
 
 export default taskSlice.reducer;

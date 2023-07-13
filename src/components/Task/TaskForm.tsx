@@ -1,95 +1,138 @@
 import { FC } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Button, TextareaAutosize, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextareaAutosize,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 import * as Yup from "yup";
+import { CreateTaskDto } from "../../types/task.ts";
+import { useNavigate } from "react-router-dom";
+
+interface Props {
+  initialValue: CreateTaskDto;
+  action: (values: CreateTaskDto) => void;
+  redirectTo: string;
+  formLabel: string;
+}
 
 const validationSchema = Yup.object().shape({
-  taskName: Yup.string().required("Task name is required"),
+  name: Yup.string().required("Task name is required"),
   description: Yup.string().required("Description is required"),
-  startDate: Yup.date().required("Start date is required"),
-  endDate: Yup.date()
+  date_start: Yup.date().required("Start date is required"),
+  date_end: Yup.date()
     .required("End date is required")
     .min(
-      Yup.ref("startDate"),
+      Yup.ref("date_start"),
       "End date must be after or equal to the start date"
     ),
 });
 
-const initialValues = {
-  taskName: "",
-  description: "",
-  startDate: null,
-  endDate: null,
-};
-
-export const TaskForm: FC = () => {
-  const handleSubmit = () => {};
+export const TaskForm: FC<Props> = ({
+  action,
+  initialValue,
+  redirectTo,
+  formLabel,
+}) => {
+  const navigate = useNavigate();
+  const handleSubmit = (values: CreateTaskDto) => {
+    action(values);
+    navigate(redirectTo);
+  };
 
   return (
-    <div>
-      <h1>Task Form</h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
+    <Box display="flex" justifyContent="center" alignItems="center">
+      <Box
+        sx={{
+          width: { xs: "100%", md: "50%" },
+          border: "2px solid #f5f5f5",
+          borderRadius: "10px",
+          padding: 5,
+        }}
       >
-        <Form>
-          <div>
-            <Field
-              as={TextField}
-              name="taskName"
-              label="Task Name"
-              variant="outlined"
-              fullWidth
-            />
-            <ErrorMessage name="taskName" component="div" />
-          </div>
+        <Typography variant="h6" gutterBottom>
+          {formLabel}
+        </Typography>
+        <Formik
+          initialValues={initialValue}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form
+            style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+          >
+            <Box>
+              <Field
+                as={TextField}
+                name="name"
+                label="Task Name"
+                variant="outlined"
+                fullWidth
+              />
+              <ErrorMessage name="name" component="div" />
+            </Box>
 
-          <div>
-            <Field
-              as={TextareaAutosize}
-              name="description"
-              rowsMin={3}
-              placeholder="Description"
-            />
-          </div>
+            <Box>
+              <Field
+                as={TextareaAutosize}
+                name="description"
+                placeholder="Description"
+                style={{
+                  width: "100%",
+                  minHeight: "100px",
+                  padding: "8px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  resize: "vertical",
+                  fontFamily: "inherit",
+                  fontSize: "inherit",
+                  outline: "none",
+                  "&:hover, &:focus": {
+                    borderColor: "#aaa",
+                  },
+                }}
+              />
+            </Box>
 
-          <div>
-            <Field
-              as={TextField}
-              name="startDate"
-              label="Start Date"
-              type="date"
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <ErrorMessage name="startDate" component="div" />
-          </div>
+            <Box>
+              <Field
+                as={TextField}
+                name="date_start"
+                label="Start Date"
+                type="date"
+                variant="outlined"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <ErrorMessage name="date_start" component="div" />
+            </Box>
 
-          <div>
-            <Field
-              as={TextField}
-              name="endDate"
-              label="End Date"
-              type="date"
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <ErrorMessage name="endDate" component="div" />
-          </div>
+            <Box>
+              <Field
+                as={TextField}
+                name="date_end"
+                label="End Date"
+                type="date"
+                variant="outlined"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <ErrorMessage name="date_end" component="div" />
+            </Box>
 
-          <Button type="submit" variant="contained" color="primary">
-            Save
-          </Button>
-        </Form>
-      </Formik>
-    </div>
+            <Button type="submit" variant="contained" color="primary">
+              Save
+            </Button>
+          </Form>
+        </Formik>
+      </Box>
+    </Box>
   );
 };

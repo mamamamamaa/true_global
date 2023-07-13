@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { CardContent, Typography } from "@mui/material";
+import { dateFormat } from "../../utils/dateFormat.ts";
 
 interface Props {
   name: string;
@@ -12,10 +13,10 @@ export const TaskCardContent: FC<Props> = ({ date_end, date_start, name }) => {
     <CardContent>
       <Typography variant="h6">{name}</Typography>
       <Typography variant="body2" color="text.secondary">
-        Start: {date_start}
+        Start: {dateFormat(date_start)}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        End: {date_end}
+        End: {dateFormat(date_end)}
       </Typography>
     </CardContent>
   );

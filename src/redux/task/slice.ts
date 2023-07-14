@@ -5,9 +5,9 @@ import { createTask, getTasks, removeTask, updateTask } from "./operations.ts";
 const initialState: TaskState = {
   error: null,
   isLoading: false,
-  currentCategory: null,
   tasks: [],
   activeTask: null,
+  activeDescription: null,
 };
 
 const extraTaskActions = [getTasks, createTask, updateTask, removeTask];
@@ -16,12 +16,11 @@ export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    setCurrentCategory(state, { payload }: PayloadAction<number>) {
-      state.currentCategory = payload;
-    },
-
-    setActiveTask(state, { payload }: PayloadAction<Task>) {
+    setActiveTask(state, { payload }: PayloadAction<Task | null>) {
       state.activeTask = payload;
+    },
+    setActiveDescription(state, { payload }: PayloadAction<string | null>) {
+      state.activeDescription = payload;
     },
   },
   extraReducers: (builder) =>
@@ -62,6 +61,6 @@ export const taskSlice = createSlice({
       ),
 });
 
-export const { setCurrentCategory, setActiveTask } = taskSlice.actions;
+export const { setActiveDescription, setActiveTask } = taskSlice.actions;
 
 export default taskSlice.reducer;

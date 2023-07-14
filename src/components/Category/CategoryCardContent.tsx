@@ -27,7 +27,10 @@ export const CategoryCardContent: FC<Props> = ({
       <Typography
         variant="h5"
         component="h2"
-        sx={{ width: { xs: "50%", md: "200px" }, overflow: "scroll" }}
+        sx={{
+          width: { xs: "50%", md: "200px" },
+          overflow: "hidden",
+        }}
       >
         {name}
       </Typography>

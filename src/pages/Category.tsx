@@ -6,6 +6,7 @@ import { selectCategories } from "../redux/category/selectors.ts";
 import { Box, Button, Typography } from "@mui/material";
 import { setToggleCreateModal } from "../redux/category/slice.ts";
 import { CreateCategoryModal } from "../components/Category/CreateCategoryModal.tsx";
+import { EmptyList } from "../components/EmptyList.tsx";
 
 const Category: FC = () => {
   const dispatch = useAppDispatch();
@@ -35,11 +36,7 @@ const Category: FC = () => {
       {categories.length !== 0 && <CategoriesList categories={categories} />}
 
       {categories.length === 0 && (
-        <Box marginTop={"2rem"} textAlign={"center"}>
-          <Typography variant="h4" component="h2" gutterBottom>
-            You don't have any categories
-          </Typography>
-        </Box>
+        <EmptyList>You don't have any categories</EmptyList>
       )}
 
       <CreateCategoryModal />

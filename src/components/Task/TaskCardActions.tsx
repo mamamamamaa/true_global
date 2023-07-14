@@ -7,7 +7,7 @@ import { removeTask } from "../../redux/task/operations.ts";
 import { useWarningDialog } from "../../hooks/useWarningDialog.ts";
 import { Link, useParams } from "react-router-dom";
 import { SmthWentWrong } from "../SmthWentWrong.tsx";
-import { setActiveTask } from "../../redux/task/slice.ts";
+import { setActiveDescription, setActiveTask } from "../../redux/task/slice.ts";
 
 interface Props {
   task: Task;
@@ -28,6 +28,9 @@ export const TaskCardActions: FC<Props> = ({ task }) => {
 
   const handleSetActiveTask = () => void dispatch(setActiveTask(task));
 
+  const handleSetActiveDescription = () =>
+    void dispatch(setActiveDescription(task.description));
+
   return (
     <>
       <CardActions
@@ -41,7 +44,7 @@ export const TaskCardActions: FC<Props> = ({ task }) => {
             Remove
           </Button>
         </Box>
-        <Button variant="outlined" onClick={() => console.log(task.id)}>
+        <Button variant="outlined" onClick={handleSetActiveDescription}>
           Description
         </Button>
       </CardActions>

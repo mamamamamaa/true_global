@@ -1,4 +1,6 @@
 import { FC } from "react";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import {
   Box,
@@ -8,9 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import * as Yup from "yup";
 import { CreateTaskDto } from "../../types/task.ts";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
   initialValue: CreateTaskDto;
@@ -20,7 +20,10 @@ interface Props {
 }
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Task name is required"),
+  name: Yup.string()
+    .min(6, "Task name must be at least 6 characters")
+    .max(30, "Maximum task name length 30 characters")
+    .required("Task name is required"),
   description: Yup.string()
     .min(1, "Description must be at least 1 characters")
     .max(500, "Maximum Description length 500 characters")
@@ -75,7 +78,9 @@ export const TaskForm: FC<Props> = ({
                 variant="outlined"
                 fullWidth
               />
-              <ErrorMessage name="name" component="div" />
+              <Box sx={{ color: "red" }}>
+                <ErrorMessage name="name" component="div" />
+              </Box>
             </Box>
 
             <Box>
@@ -112,7 +117,9 @@ export const TaskForm: FC<Props> = ({
                   shrink: true,
                 }}
               />
-              <ErrorMessage name="date_start" component="div" />
+              <Box sx={{ color: "red" }}>
+                <ErrorMessage name="date_start" component="div" />
+              </Box>
             </Box>
 
             <Box>
@@ -127,7 +134,9 @@ export const TaskForm: FC<Props> = ({
                   shrink: true,
                 }}
               />
-              <ErrorMessage name="date_end" component="div" />
+              <Box sx={{ color: "red" }}>
+                <ErrorMessage name="date_end" component="div" />
+              </Box>
             </Box>
 
             <Button type="submit" variant="contained" color="primary">

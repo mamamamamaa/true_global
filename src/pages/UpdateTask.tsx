@@ -6,6 +6,7 @@ import { CreateTaskDto } from "../types/task.ts";
 import { updateTask } from "../redux/task/operations.ts";
 import { TaskForm } from "../components/Task/TaskForm.tsx";
 import { selectActiveTask } from "../redux/task/selectors.ts";
+import { setActiveTask } from "../redux/task/slice.ts";
 
 const UpdateTask: FC = () => {
   const dispatch = useAppDispatch();
@@ -18,8 +19,10 @@ const UpdateTask: FC = () => {
 
   const redirectTo = `/${categoryId}/tasks`;
 
-  const handleCreateTask = (values: CreateTaskDto) =>
+  const handleCreateTask = (values: CreateTaskDto) => {
     void dispatch(updateTask({ dto: values, taskId: id }));
+    void dispatch(setActiveTask(null));
+  };
 
   return (
     <TaskForm

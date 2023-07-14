@@ -48,7 +48,9 @@ export const AuthFrom: FC<Props> = ({
                   variant="outlined"
                   fullWidth
                 />
-                <ErrorMessage name={name} component="div" />
+                <Box sx={{ color: "red" }}>
+                  <ErrorMessage name={name} component="div" />
+                </Box>
               </Box>
             ))}
 

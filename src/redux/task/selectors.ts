@@ -8,5 +8,5 @@ export const selectTasks = (state: RootState) => state.task.tasks;
 
 export const selectActiveTask = (state: RootState) => state.task.activeTask;
 
-export const selectCurrentCategory = (state: RootState) =>
-  state.task.currentCategory;
+export const selectActiveDescription = (state: RootState) =>
+  state.task.activeDescription;

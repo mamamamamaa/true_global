@@ -5,9 +5,9 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { persistor, store } from "./redux/store.ts";
 import { PersistGate } from "redux-persist/integration/react";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
 import "./index.css";
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
 const defaultTheme = createTheme();
 

@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks.ts";
 import { getCategories } from "../redux/category/operations.ts";
 import { CategoriesList } from "../components/Category/CategoriesList.tsx";
 import { selectCategories } from "../redux/category/selectors.ts";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { setToggleCreateModal } from "../redux/category/slice.ts";
 import { CreateCategoryModal } from "../components/Category/CreateCategoryModal.tsx";
 import { EmptyList } from "../components/EmptyList.tsx";

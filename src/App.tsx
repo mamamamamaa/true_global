@@ -13,6 +13,7 @@ const LoginPage = lazy(() => import("./pages/Login.tsx"));
 const RegisterPage = lazy(() => import("./pages/Register.tsx"));
 const CreateTaskPage = lazy(() => import("./pages/CreateTask.tsx"));
 const UpdateTaskPage = lazy(() => import("./pages/UpdateTask.tsx"));
+const NotFoundPage = lazy(() => import("./pages/NotFound.tsx"));
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -65,6 +66,8 @@ export const App = () => {
             />
           }
         />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
